@@ -1,0 +1,20 @@
+toolbar:
+  - styleselect | bold italic | undo redo
+  - image | link
+  - preview
+    
+plugins:
+  - image
+  - link
+  - autoresize
+  - preview
+  default:
+  plugins:
+    - image
+    - link
+    - autoresize
+alternate:
+  selector: textarea.table-editor
+  toolbar: styleselect | bold italic | undo redo | table
+  plugins:
+    - table

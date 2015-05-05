@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Raleway:400,700' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+        <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="sidebar">
+      <div id="logo">
+        <%= link_to root_path do %>
+          <%= image_tag "baro.jpg" %>
+        <% end %>
+      </div>
+ 
+        <ul>
+       <li class="category">Social</li>
+       <li><img src="http://upload.wikimedia.org/wikipedia/de/thumb/0/08/Facebook_Home.svg/1024px-Facebook_Home.svg.png" style="width:25px;height:25px">    <a href="https://www.facebook.com/bartlomiej.dorula">facebook</a></li>
+       <li><img src="https://queenshop.com.tw/assets/images/svg/sh/instagram.svg" style="width:25px;height:25px">   <a href="http://instagram.com/baro232ns">Instagram</a></li>
+       <li><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/45/New_Logo_Gmail.svg/1000px-New_Logo_Gmail.svg.png" style="width:25px;height:20px">    <a href="mailto:dorula16@gmail.com">Email</a></li>
+      </ul>
+      <% if !user_signed_in? %>
+       <p class="sign_in"><%= link_to "Admin Login", new_user_session_path %></p>
+      <% end %>
+    </div>
+ 
+  <div id="main_content">
+    <div id="header">
+      
+       <% if user_signed_in? %>
+    <div class="buttons">
+      <button class="button"><%= link_to "New Post", new_post_path %></button>
+      <button class="button"><%=link_to "Log Out" , destroy_user_session_path, :method => :delete %></button>
+
+    </div>
+    
+  <% end %> 
+ 
+    <% flash.each do |name, msg| %>
+      <%= content_tag(:div, msg, class: "alert") %>
+    <% end %>
+ 
+    <%= yield %>
+  </div>
+ 
+  </body>
+</html>
